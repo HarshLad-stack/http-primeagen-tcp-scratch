@@ -1,0 +1,26 @@
+That’s a solid plan. Running the environment locally is the "engineer's way" anyway—plus, you get to keep all your configurations and code history right on your machine. Since you're diving into HTTP from scratch with ThePrimeagen, you're going to be looking at the nitty-gritty of how bytes move across the wire.
+
+Since you're on a Windows machine but likely using WSL (Ubuntu) for this course, here is how you can stay sync’d up without spending a dime:
+
+1. The Local Environment Setup
+The course usually involves building a server or a tool that interacts with the protocol. Make sure your WSL environment is primed:
+
+Go/Rust/Zig: Whatever language you're using, ensure the compiler is installed inside WSL, not just Windows.
+
+Netcat (nc) or Telnet: You’ll likely use these to manually "type" HTTP requests to see how a server responds. It’s the best way to realize that HTTP is just plain text.
+
+Wireshark (Optional but Cool): Since you have a solid GPU/CPU setup, running Wireshark on Windows while your WSL code sends requests can let you actually see the TCP handshake and the HTTP data packets.
+
+2. Handling the "Onsite" Content
+Since you'll have the website open for the instructions/videos while coding locally:
+
+Port Forwarding: If the course requires you to access a web server you built, remember that WSL2 usually maps localhost from Windows to the WSL instance automatically. If it doesn't, you might need to grab the IP using ip addr show eth0.
+
+Manual Requests: Get comfortable using curl -v. The -v (verbose) flag is your best friend here because it shows the headers, which is exactly what you'll be learning to parse.
+
+3. A Quick Tip for "From Scratch"
+When you start writing the code to handle a socket, remember that you aren't just "receiving a string." You're receiving a stream of bytes. You'll have to look for the double CRLF (\r\n\r\n) to know where the headers end and the body begins.
+
+It’s a "low-level" mindset, which fits perfectly with your interest in gRPC and microservices—understanding the raw transport layer makes the high-level abstractions much easier to debug later.
+
+Are you plannin
